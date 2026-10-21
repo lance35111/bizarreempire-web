@@ -481,7 +481,7 @@ html.lenis body {
       </form>
       <div class="done" id="done" hidden>
         <h3>Got your brief.</h3>
-        <p>This is a demo page; the form does not send anything yet. In the live version the Concierge confirms receipt, and within 24 hours you get a moodboard with a script and a price.</p>
+        <p>Within 24 hours you get a moodboard, a script and a price. This is what you sent us:</p>
         <pre id="preview"></pre>
       </div>
     </div>
@@ -509,7 +509,7 @@ ${ue.type}: ${t.type.value}
 ${ue.budget}: ${t.budget.value}
 ${ue.when}: ${t.when.value||"\u2014"}
 
-${t.msg.value||ue.none}`,t.hidden=!0,o.hidden=!1,Me?.resize(),Q.ScrollTrigger.refresh()}),document.querySelectorAll(".copy").forEach(s=>s.addEventListener("click",()=>{let m=s.dataset.copy;(navigator.clipboard?.writeText(m)||Promise.reject()).then(()=>s.textContent=ue.copied,()=>{let u=document.createRange();u.selectNodeContents(N("#mail"));let v=getSelection();v.removeAllRanges(),v.addRange(u),s.textContent=ue.selected}),setTimeout(()=>s.textContent=ue.copy,1800)}))})();document.fonts?.ready.then(()=>Q.ScrollTrigger.refresh());})();
+${t.msg.value||ue.none}`;let B=N("#f-submit"),bt=B.textContent,et=r.textContent;B.disabled=!0;B.textContent="Sending…";fetch("https://formsubmit.co/ajax/studio@bizarre.media",{method:"POST",headers:{"Content-Type":"application/json",Accept:"application/json"},body:JSON.stringify({_subject:"New brief from bizarre.media (EN)",_template:"table",_captcha:"false",name:m,email:u,type:t.type.value,budget:t.budget.value,when:t.when.value||"\u2014",message:t.msg.value||"\u2014",page:location.href})}).then(x=>x.ok?x.json():Promise.reject()).then(j=>{if(String(j.success)!=="true")throw 0;t.hidden=!0,o.hidden=!1,Me?.resize(),Q.ScrollTrigger.refresh()}).catch(()=>{B.disabled=!1;B.textContent=bt;r.textContent="Sending failed. Write to us at studio@bizarre.media.";r.hidden=!1;setTimeout(()=>r.textContent=et,8000)})}),document.querySelectorAll(".copy").forEach(s=>s.addEventListener("click",()=>{let m=s.dataset.copy;(navigator.clipboard?.writeText(m)||Promise.reject()).then(()=>s.textContent=ue.copied,()=>{let u=document.createRange();u.selectNodeContents(N("#mail"));let v=getSelection();v.removeAllRanges(),v.addRange(u),s.textContent=ue.selected}),setTimeout(()=>s.textContent=ue.copy,1800)}))})();document.fonts?.ready.then(()=>Q.ScrollTrigger.refresh());})();
 </script>
 
 </body></html>
